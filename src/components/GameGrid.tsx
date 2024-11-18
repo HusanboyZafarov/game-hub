@@ -1,41 +1,8 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Text,
-} from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-
-interface Game {
-  id: number;
-  name: string;
-}
-
-interface FetchGamesReponse {
-  count: number;
-  results: Game[];
-}
+import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/react";
+import useGames from "../hooks/useGames";
 
 const GameGrid = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    apiClient
-      .get<FetchGamesReponse>("/games")
-      .then((res) => {
-        setGames(res.data.results);
-        setError("");
-      })
-      .catch((err) => {
-        console.log(err);
-        setGames([]);
-        setError(err.message);
-      });
-  });
-
+  const { error, games } = useGames();
   return (
     <>
       {error && (
