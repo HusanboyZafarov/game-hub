@@ -20,7 +20,9 @@ const GameCard = ({ game }: Props) => {
     <Card key={game.id}>
       <Image src={getCroppedImgUrl(game.background_image)} />
       <CardBody>
-        <Heading fontSize="2xl">{game.name}</Heading>
+        <Heading fontSize="2xl">
+          {game.name.length > 20 ? game.name.slice(0, 20) + " ..." : game.name}
+        </Heading>
         <HStack justifyContent="space-between" mt={2}>
           <PlatformIconList
             platforms={game.parent_platforms.map((p) => p.platform)}
