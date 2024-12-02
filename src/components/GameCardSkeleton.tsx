@@ -1,8 +1,12 @@
 import { Card, CardBody, Skeleton, SkeletonText } from "@chakra-ui/react";
 
-const GameCardSkeleton = () => {
+interface Props {
+  opacity_num: string;
+}
+
+const GameCardSkeleton = ({ opacity_num }: Props) => {
   return (
-    <Card>
+    <Card opacity={opacity_num}>
       <Skeleton height="200px" />
       <CardBody>
         <SkeletonText />

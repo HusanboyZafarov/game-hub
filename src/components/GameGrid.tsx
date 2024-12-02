@@ -6,7 +6,18 @@ import GameCardSkeleton from "./GameCardSkeleton";
 
 const GameGrid = () => {
   const { error, data, isLoading } = useGames();
-  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const skeletons = [
+    "1",
+    "1",
+    "0.75",
+    "0.75",
+    "0.5",
+    "0.5",
+    "0.25",
+    "0.25",
+    "0.1",
+    "0.1",
+  ];
 
   return (
     <>
@@ -23,13 +34,15 @@ const GameGrid = () => {
       >
         {isLoading
           ? skeletons.map((skeleton) => (
-              <GameCardContainer key={skeleton}>
-                <GameCardSkeleton key={skeleton} />{" "}
+              <GameCardContainer
+                key={parseFloat(skeleton) * Math.random() * 10}
+              >
+                <GameCardSkeleton opacity_num={skeleton} />{" "}
               </GameCardContainer>
             ))
           : data.map((game) => (
               <GameCardContainer key={game.id}>
-                <GameCard key={game.id} game={game}></GameCard>
+                <GameCard game={game}></GameCard>
               </GameCardContainer>
             ))}
       </SimpleGrid>
