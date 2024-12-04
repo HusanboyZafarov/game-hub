@@ -48,7 +48,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
               padding="5px"
               marginY="4px"
               bg={
-                selectedGenre !== null && selectedGenre.id === genre.id
+                selectedGenre !== null && selectedGenre?.id === genre.id
                   ? activeBg
                   : "transparent"
               }
