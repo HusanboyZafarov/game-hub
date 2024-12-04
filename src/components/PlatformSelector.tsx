@@ -10,36 +10,35 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import usePlatforms from "../hooks/usePlatforms";
+import usePlatforms, { Platform } from "../hooks/usePlatforms";
 
-const PlatformSelector = () => {
+interface Props {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
+}
+
+const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatforms();
+
+  if (error) return null;
 
   return (
     <>
-      {error ? (
-        <Alert status="error" variant="left-accent">
-          <AlertIcon />
-          <AlertTitle>Failed!</AlertTitle>
-          <AlertDescription>
-            Failed to load platforms. We have problems with server or check your
-            connection, please!
-          </AlertDescription>
-        </Alert>
-      ) : (
-        <Menu>
-          <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-            Platforms
-          </MenuButton>
-          <MenuList>
-            {data.map((platform) => (
-              <MenuItem key={platform.id} onClick={() => console.log(platform)}>
-                {platform.name}
-              </MenuItem>
-            ))}
-          </MenuList>
-        </Menu>
-      )}
+      <Menu>
+        <MenuButton as={Button} rightIcon={<BsChevronDown />}>
+          {selectedPlatform?.name || "Platforms"}
+        </MenuButton>
+        <MenuList>
+          {data.map((platform) => (
+            <MenuItem
+              key={platform.id}
+              onClick={() => onSelectPlatform(platform)}
+            >
+              {platform.name}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
     </>
   );
 };
