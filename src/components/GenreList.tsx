@@ -1,10 +1,25 @@
-import { HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
-import useGenres from "../hooks/useGenres";
+import {
+  Button,
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImgUrl from "../services/img-url";
 import GenreItemSkeleton from "./GenreItemSkeleton";
 
-const GenreList = () => {
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
+}
+
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, isLoading } = useGenres();
+  const hoverBg = useColorModeValue("gray.100", "gray.700");
+  const activeBg = useColorModeValue("gray.200", "gray.600");
   const skeletons = [
     "1",
     "1",
@@ -28,14 +43,32 @@ const GenreList = () => {
             />
           ))
         : data.map((genre) => (
-            <ListItem key={genre.id} paddingY="5px">
+            <ListItem
+              key={genre.id}
+              padding="5px"
+              marginY="4px"
+              bg={
+                selectedGenre !== null && selectedGenre.id === genre.id
+                  ? activeBg
+                  : "transparent"
+              }
+              borderRadius={8}
+              _hover={{
+                bg: hoverBg,
+                cursor: "pointer",
+              }}
+              _active={{ bg: activeBg }}
+              onClick={() => onSelectGenre(genre)}
+            >
               <HStack>
                 <Image
                   boxSize="32px"
                   borderRadius={8}
                   src={getCroppedImgUrl(genre.image_background)}
                 />
-                <Text fontSize="lg">{genre.name}</Text>
+                <Text fontSize="lg" variant="link">
+                  {genre.name}
+                </Text>
               </HStack>
             </ListItem>
           ))}
