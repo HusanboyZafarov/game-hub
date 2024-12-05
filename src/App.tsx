@@ -1,12 +1,12 @@
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
-import { useState } from "react";
-import GameGrid from "./components/GameGrid";
-import GenreList from "./components/GenreList";
-import Navbar from "./components/Navbar";
-import PlatformSelector from "./components/PlatformSelector";
-import SortSelector from "./components/SortSelector";
-import { Genre } from "./hooks/useGenres";
-import { Platform } from "./hooks/usePlatforms";
+import { Grid, GridItem, HStack, Show } from '@chakra-ui/react';
+import { useState } from 'react';
+import GameGrid from './components/GameGrid';
+import GenreList from './components/GenreList';
+import Navbar from './components/Navbar';
+import PlatformSelector from './components/PlatformSelector';
+import SortSelector from './components/SortSelector';
+import { Genre } from './hooks/useGenres';
+import { Platform } from './hooks/usePlatforms';
 
 export interface GameQuery {
   genre: Genre | null;
@@ -21,25 +21,25 @@ function App() {
     <Grid
       templateAreas={{
         base: `"nav" "main"`,
-        lg: `"nav nav nav nav" "aside main main main"`,
+        lg: `"nav nav nav nav" "aside main main main"`
       }}
       templateColumns={{
-        base: "1fr",
-        lg: "200px 1fr",
+        base: '1fr',
+        lg: '200px 1fr'
       }}
     >
-      <GridItem area="nav">
+      <GridItem area='nav'>
         <Navbar />
       </GridItem>
-      <Show above="lg">
-        <GridItem area="aside" paddingX={5}>
+      <Show above='lg'>
+        <GridItem area='aside' paddingX={5}>
           <GenreList
             selectedGenre={gameQuery.genre}
             onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
           />
         </GridItem>
       </Show>
-      <GridItem area="main" sx={{ padding: "0 15px" }}>
+      <GridItem area='main' sx={{ padding: '0 15px' }}>
         <HStack spacing={3}>
           <PlatformSelector
             onSelectPlatform={(platform) =>
