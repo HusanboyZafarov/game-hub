@@ -32,6 +32,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
           <MenuItem
             key={platform.id}
             onClick={() => onSelectPlatform(platform)}
+            isDisabled={platform.name == selectedPlatform?.name}
           >
             {platform.name}
           </MenuItem>

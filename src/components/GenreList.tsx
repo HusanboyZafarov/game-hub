@@ -7,6 +7,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImgUrl from "../services/img-url";
 import GenreItemSkeleton from "./GenreItemSkeleton";
@@ -18,8 +19,9 @@ interface Props {
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, isLoading } = useGenres();
+
   const hoverBg = useColorModeValue("gray.100", "gray.700");
-  const activeBg = useColorModeValue("gray.200", "gray.600");
+  const activeBg = useColorModeValue("gray.100", "gray.700");
   const skeletons = [
     "1",
     "1",
@@ -63,6 +65,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                 }}
                 _active={{ bg: activeBg }}
                 onClick={() => onSelectGenre(genre)}
+                pointerEvents={selectedGenre?.id === genre.id ? "none" : "auto"}
               >
                 <HStack>
                   <Image
