@@ -7,7 +7,6 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImgUrl from "../services/img-url";
 import GenreItemSkeleton from "./GenreItemSkeleton";

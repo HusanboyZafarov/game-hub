@@ -1,8 +1,6 @@
 import { Alert, AlertIcon, AlertTitle, SimpleGrid } from "@chakra-ui/react";
 import { GameQuery } from "../App";
 import useGames from "../hooks/useGames";
-import { Genre } from "../hooks/useGenres";
-import { Platform } from "../hooks/usePlatforms";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
@@ -29,7 +27,7 @@ const GameGrid = ({ gameQuery }: Props) => {
     return (
       <Alert status="error" sx={{ borderRadius: "10px 0px 0px 10px" }}>
         <AlertIcon />
-        <AlertTitle>{error}</AlertTitle>
+        <AlertTitle>{error.message}</AlertTitle>
       </Alert>
     );
 
@@ -45,7 +43,7 @@ const GameGrid = ({ gameQuery }: Props) => {
               <GameCardSkeleton opacity_num={skeleton} />{" "}
             </GameCardContainer>
           ))
-        : data.map((game) => (
+        : data?.results.map((game) => (
             <GameCardContainer key={game.id}>
               <GameCard game={game}></GameCard>
             </GameCardContainer>

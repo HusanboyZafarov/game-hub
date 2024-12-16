@@ -1,11 +1,4 @@
-import {
-  Badge,
-  Card,
-  CardBody,
-  Heading,
-  HStack,
-  Image,
-} from "@chakra-ui/react";
+import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
 import { Game } from "../hooks/useGames";
 import getCroppedImgUrl from "../services/img-url";
 import CriticScore from "./CriticScore";
