@@ -48,7 +48,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                 key={parseFloat(skeleton) * Math.random() * 10}
               />
             ))
-          : data.map((genre) => (
+          : data?.results.map((genre) => (
               <ListItem
                 key={genre.id}
                 padding="5px"
