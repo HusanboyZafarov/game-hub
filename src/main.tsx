@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import App from "./App";
 import theme from "./theme";
 import "./index.css";
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <QueryClientProvider client={queryClient}>
         <App />
         <ReactQueryDevtools />
+        <SpeedInsights />
       </QueryClientProvider>
     </ChakraProvider>
   </React.StrictMode>
