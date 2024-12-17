@@ -1,12 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import React from "react";
+import ReactDOM from "react-dom/client";
 import App from "./App";
-import theme from "./theme";
 import "./index.css";
+import theme from "./theme";
 
 const queryClient = new QueryClient();
 
