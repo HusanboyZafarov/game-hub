@@ -13,10 +13,10 @@ import GenreItemSkeleton from "./GenreItemSkeleton";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreId?: number;
 }
 
-const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenreId }: Props) => {
   const { data, isLoading } = useGenres();
 
   const hoverBg = useColorModeValue("gray.100", "gray.700");
@@ -53,7 +53,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                 padding="5px"
                 marginY="4px"
                 bg={
-                  selectedGenre !== null && selectedGenre?.id === genre.id
+                  selectedGenreId !== null && selectedGenreId === genre.id
                     ? activeBg
                     : "transparent"
                 }
@@ -64,7 +64,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                 }}
                 _active={{ bg: activeBg }}
                 onClick={() => onSelectGenre(genre)}
-                pointerEvents={selectedGenre?.id === genre.id ? "none" : "auto"}
+                pointerEvents={selectedGenreId === genre.id ? "none" : "auto"}
               >
                 <HStack>
                   <Image
