@@ -5,19 +5,17 @@ import {
   List,
   ListItem,
   Text,
-  useColorModeValue,
+  useColorModeValue
 } from "@chakra-ui/react";
-import useGenres, { Genre } from "../hooks/useGenres";
+import useGenres from "../hooks/useGenres";
 import getCroppedImgUrl from "../services/img-url";
+import useGameQueryStore from "../store";
 import GenreItemSkeleton from "./GenreItemSkeleton";
 
-interface Props {
-  onSelectGenre: (genre: Genre) => void;
-  selectedGenreId?: number;
-}
-
-const GenreList = ({ onSelectGenre, selectedGenreId }: Props) => {
+const GenreList = () => {
   const { data, isLoading } = useGenres();
+  const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
+  const setSelectedGenreId = useGameQueryStore((s) => s.setGenreId);
 
   const hoverBg = useColorModeValue("gray.100", "gray.700");
   const activeBg = useColorModeValue("gray.100", "gray.700");
@@ -63,7 +61,7 @@ const GenreList = ({ onSelectGenre, selectedGenreId }: Props) => {
                   cursor: "pointer",
                 }}
                 _active={{ bg: activeBg }}
-                onClick={() => onSelectGenre(genre)}
+                onClick={() => setSelectedGenreId(genre.id)}
                 pointerEvents={selectedGenreId === genre.id ? "none" : "auto"}
               >
                 <HStack>

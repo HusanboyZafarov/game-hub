@@ -1,24 +1,20 @@
 import {
   Alert,
   AlertIcon,
-  AlertTitle, Center,
+  AlertTitle,
+  Center,
   SimpleGrid,
-  Spinner
+  Spinner,
 } from "@chakra-ui/react";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { GameQuery } from "../App";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 
-interface Props {
-  gameQuery: GameQuery;
-}
-
-const GameGrid = ({ gameQuery }: Props) => {
+const GameGrid = () => {
   const { error, data, isFetchingNextPage, fetchNextPage, hasNextPage } =
-    useGames(gameQuery);
+    useGames();
 
   if (error)
     return (
