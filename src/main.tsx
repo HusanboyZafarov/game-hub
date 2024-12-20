@@ -4,8 +4,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
 import theme from "./theme";
 
 const queryClient = new QueryClient();
@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <QueryClientProvider client={queryClient}>
-        <App />
+        <RouterProvider router={router} />
         <ReactQueryDevtools />
         <SpeedInsights />
       </QueryClientProvider>
